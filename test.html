@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Polish Normalizer Demo</title>
+  <script type="module" src="./polish-normalizer.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 2em; }
+    input, button { font-size: 1em; }
+    #output { margin-top: 1em; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Polish Normalizer Demo</h1>
+  <p>Type Polish text with diacritics below and see the normalized result:</p>
+  <input id="input" type="text" value="Zażółć gęślą jaźń" size="40">
+  <button onclick="normalize()">Normalize</button>
+  <div id="output"></div>
+
+  <script type="module">
+    import { normalizePolish } from './polish-normalizer.js';
+    window.normalize = function() {
+      const input = document.getElementById('input').value;
+      const output = normalizePolish(input);
+      document.getElementById('output').textContent = output;
+    };
+    // Initial run
+    window.normalize();
+  </script>
+</body>
+</html>
