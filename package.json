@@ -8,4 +8,6 @@
   "keywords": ["polish", "diacritics", "normalize", "string", "utility"],
   "author": "Hayk Jomardyan",
   "license": "MIT"
+  "scripts": {"test": "echo \"No tests specified\" && exit 0"
+  
 }
