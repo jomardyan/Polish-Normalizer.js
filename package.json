@@ -1,0 +1,11 @@
+{
+  "name": "polish-normalizer",
+  "version": "1.0.0",
+  "description": "A tiny, zero-dependency JavaScript utility to replace Polish diacritic letters with their plain Latin equivalents.",
+  "main": "polish-normalizer.js",
+  "type": "module",
+  "exports": "./polish-normalizer.js",
+  "keywords": ["polish", "diacritics", "normalize", "string", "utility"],
+  "author": "Hayk Jomardyan",
+  "license": "MIT"
+}
