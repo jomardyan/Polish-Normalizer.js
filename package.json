@@ -7,7 +7,12 @@
   "exports": "./polish-normalizer.js",
   "keywords": ["polish", "diacritics", "normalize", "string", "utility"],
   "author": "Hayk Jomardyan",
-  "license": "MIT"
-  "scripts": {"test": "echo \"No tests specified\" && exit 0"
-  
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jomardyan/polish-normalizer.git"
+  },
+  "scripts": {
+    "test": "node polish-normalizer.test.js"
+  }
 }
