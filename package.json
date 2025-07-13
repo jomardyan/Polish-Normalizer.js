@@ -5,14 +5,46 @@
   "main": "polish-normalizer.js",
   "type": "module",
   "exports": "./polish-normalizer.js",
-  "keywords": ["polish", "diacritics", "normalize", "string", "utility"],
+  "files": [
+    "polish-normalizer.js",
+    "polish-normalizer.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "polish",
+    "diacritics",
+    "normalize",
+    "string",
+    "utility",
+    "unicode",
+    "text-processing",
+    "internationalization",
+    "i18n"
+  ],
   "author": "Hayk Jomardyan",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/jomardyan/polish-normalizer.git"
   },
+  "bugs": {
+    "url": "https://github.com/jomardyan/polish-normalizer/issues"
+  },
+  "homepage": "https://github.com/jomardyan/polish-normalizer#readme",
   "scripts": {
-    "test": "node polish-normalizer.test.js"
+    "test": "node polish-normalizer.test.js",
+    "lint": "eslint *.js",
+    "lint:fix": "eslint *.js --fix",
+    "format": "prettier --write \"*.{js,json,md}\"",
+    "format:check": "prettier --check \"*.{js,json,md}\"",
+    "validate": "npm run lint && npm run format:check && npm test"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5"
   }
 }

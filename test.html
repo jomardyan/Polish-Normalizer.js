@@ -1,31 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Polish Normalizer Demo</title>
-  <script type="module" src="./polish-normalizer.js"></script>
-  <style>
-    body { font-family: sans-serif; margin: 2em; }
-    input, button { font-size: 1em; }
-    #output { margin-top: 1em; font-weight: bold; }
-  </style>
-</head>
-<body>
-  <h1>Polish Normalizer Demo</h1>
-  <p>Type Polish text with diacritics below and see the normalized result:</p>
-  <input id="input" type="text" value="Zażółć gęślą jaźń" size="40">
-  <button onclick="normalize()">Normalize</button>
-  <div id="output"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Polish Normalizer Demo</title>
+    <script type="module" src="./polish-normalizer.js"></script>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          sans-serif;
+        margin: 2em auto;
+        max-width: 800px;
+        line-height: 1.6;
+        color: #333;
+      }
+      .container {
+        padding: 0 1em;
+      }
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+      }
+      .demo-section {
+        background: #f8f9fa;
+        padding: 1.5em;
+        border-radius: 8px;
+        margin: 2em 0;
+      }
+      input {
+        font-size: 1.1em;
+        padding: 0.5em;
+        width: 100%;
+        max-width: 400px;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        margin: 0.5em 0;
+      }
+      button {
+        font-size: 1em;
+        padding: 0.5em 1em;
+        background: #3498db;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 0.5em;
+      }
+      button:hover {
+        background: #2980b9;
+      }
+      #output {
+        margin-top: 1em;
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #27ae60;
+        padding: 0.5em;
+        background: #ecf0f1;
+        border-radius: 4px;
+        min-height: 1.5em;
+      }
+      .examples {
+        margin-top: 2em;
+      }
+      .example {
+        margin: 1em 0;
+        padding: 1em;
+        background: #ffffff;
+        border-left: 4px solid #3498db;
+        border-radius: 0 4px 4px 0;
+      }
+      .example-input {
+        font-weight: bold;
+        color: #e74c3c;
+      }
+      .example-output {
+        color: #27ae60;
+        margin-top: 0.5em;
+      }
+      .character-table {
+        margin-top: 2em;
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .character-table th,
+      .character-table td {
+        border: 1px solid #ddd;
+        padding: 0.5em;
+        text-align: center;
+      }
+      .character-table th {
+        background: #3498db;
+        color: white;
+      }
+      .polish-char {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #e74c3c;
+      }
+      .latin-char {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #27ae60;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Polish Normalizer Demo</h1>
+      <p>
+        Interactive demonstration of the Polish Normalizer library. Type Polish
+        text with diacritics below and see the normalized result in real-time.
+      </p>
 
-  <script type="module">
-    import { normalizePolish } from './polish-normalizer.js';
-    window.normalize = function() {
-      const input = document.getElementById('input').value;
-      const output = normalizePolish(input);
-      document.getElementById('output').textContent = output;
-    };
-    // Initial run
-    window.normalize();
-  </script>
-</body>
+      <div class="demo-section">
+        <h3>Try it yourself:</h3>
+        <input
+          id="input"
+          type="text"
+          value="Zażółć gęślą jaźń"
+          placeholder="Type Polish text here..."
+        />
+        <button onclick="normalize()">Normalize</button>
+        <div id="output"></div>
+      </div>
+
+      <div class="examples">
+        <h3>Examples:</h3>
+        <div class="example">
+          <div class="example-input">Input: "Kraków, Gdańsk, Łódź"</div>
+          <div class="example-output">Output: "Krakow, Gdansk, Lodz"</div>
+        </div>
+        <div class="example">
+          <div class="example-input">Input: "Żółć, jaźń, gęślą"</div>
+          <div class="example-output">Output: "Zolc, jazn, gesla"</div>
+        </div>
+        <div class="example">
+          <div class="example-input">Input: "ĄĆĘŁŃÓŚŹŻ"</div>
+          <div class="example-output">Output: "ACELNOSZZ"</div>
+        </div>
+      </div>
+
+      <div>
+        <h3>Character Mappings:</h3>
+        <table class="character-table">
+          <thead>
+            <tr>
+              <th>Polish Uppercase</th>
+              <th>Latin Uppercase</th>
+              <th>Polish Lowercase</th>
+              <th>Latin Lowercase</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="polish-char">Ą</td>
+              <td class="latin-char">A</td>
+              <td class="polish-char">ą</td>
+              <td class="latin-char">a</td>
+            </tr>
+            <tr>
+              <td class="polish-char">Ć</td>
+              <td class="latin-char">C</td>
+              <td class="polish-char">ć</td>
+              <td class="latin-char">c</td>
+            </tr>
+            <tr>
+              <td class="polish-char">Ę</td>
+              <td class="latin-char">E</td>
+              <td class="polish-char">ę</td>
+              <td class="latin-char">e</td>
+            </tr>
+            <tr>
+              <td class="polish-char">Ł</td>
+              <td class="latin-char">L</td>
+              <td class="polish-char">ł</td>
+              <td class="latin-char">l</td>
+            </tr>
+            <tr>
+              <td class="polish-char">Ń</td>
+              <td class="latin-char">N</td>
+              <td class="polish-char">ń</td>
+              <td class="latin-char">n</td>
+            </tr>
+            <tr>
+              <td class="polish-char">Ó</td>
+              <td class="latin-char">O</td>
+              <td class="polish-char">ó</td>
+              <td class="latin-char">o</td>
+            </tr>
+            <tr>
+              <td class="polish-char">Ś</td>
+              <td class="latin-char">S</td>
+              <td class="polish-char">ś</td>
+              <td class="latin-char">s</td>
+            </tr>
+            <tr>
+              <td class="polish-char">Ź</td>
+              <td class="latin-char">Z</td>
+              <td class="polish-char">ź</td>
+              <td class="latin-char">z</td>
+            </tr>
+            <tr>
+              <td class="polish-char">Ż</td>
+              <td class="latin-char">Z</td>
+              <td class="polish-char">ż</td>
+              <td class="latin-char">z</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script type="module">
+      import { normalizePolish } from './polish-normalizer.js';
+
+      // Make normalize function globally available
+      window.normalize = function () {
+        const input = document.getElementById('input').value;
+        const output = normalizePolish(input);
+        document.getElementById('output').textContent = output || '(empty)';
+      };
+
+      // Auto-normalize on input
+      document.getElementById('input').addEventListener('input', normalize);
+
+      // Initial run
+      window.normalize();
+    </script>
+  </body>
 </html>
