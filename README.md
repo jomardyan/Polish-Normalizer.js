@@ -23,14 +23,32 @@ npm install polish-normalizer
 ### ES Module Import
 
 ```js
-import { normalizePolish } from 'polish-normalizer';
+import {
+  normalizePolish,
+  hasPolishChars,
+  getPolishChars,
+} from 'polish-normalizer';
 
+// Normalize text
 console.log(normalizePolish('Zażółć gęślą jaźń'));
 // Output: "Zazolc gesla jazn"
 
+// Check for Polish characters
+console.log(hasPolishChars('Kraków'));
+// Output: true
+
+console.log(hasPolishChars('Hello World'));
+// Output: false
+
+// Extract Polish characters
+console.log(getPolishChars('Zażółć'));
+// Output: ['ż', 'ó', 'ł', 'ć']
+
+// All uppercase
 console.log(normalizePolish('ĄĆĘŁŃÓŚŹŻ'));
 // Output: "ACELNOSZZ"
 
+// Mixed content
 console.log(normalizePolish('Kraków, Gdańsk, Łódź'));
 // Output: "Krakow, Gdansk, Lodz"
 ```
@@ -40,11 +58,17 @@ console.log(normalizePolish('Kraków, Gdańsk, Łódź'));
 ```js
 import 'polish-normalizer';
 
+// Normalize using prototype method
 console.log('Zażółć gęślą jaźń'.normalizePolish());
 // Output: "Zazolc gesla jazn"
 
-console.log('Witaj świecie!'.normalizePolish());
-// Output: "Witaj swiecie!"
+// Check for Polish characters
+console.log('Kraków'.hasPolishChars());
+// Output: true
+
+// Extract Polish characters
+console.log('Witaj świecie!'.getPolishChars());
+// Output: ['ś']
 ```
 
 ### Browser Usage
@@ -84,6 +108,47 @@ normalizePolish(null); // null
 normalizePolish(123); // 123
 ```
 
+### `hasPolishChars(text)`
+
+Checks if the input text contains any Polish diacritic characters.
+
+**Parameters:**
+
+- `text` (string): The text to check
+
+**Returns:**
+
+- (boolean): True if the text contains Polish diacritics, false otherwise
+
+**Examples:**
+
+```js
+hasPolishChars('Zażółć gęślą jaźń'); // true
+hasPolishChars('Hello World'); // false
+hasPolishChars('Kraków'); // true
+hasPolishChars(''); // false
+```
+
+### `getPolishChars(text)`
+
+Extracts all unique Polish diacritic characters from the input text.
+
+**Parameters:**
+
+- `text` (string): The text to analyze
+
+**Returns:**
+
+- (string[]): Array of unique Polish characters found in the text
+
+**Examples:**
+
+```js
+getPolishChars('Zażółć'); // ['ż', 'ó', 'ł', 'ć']
+getPolishChars('Hello World'); // []
+getPolishChars('ąąąććć'); // ['ą', 'ć'] (unique only)
+```
+
 ### String.prototype.normalizePolish()
 
 Extends String prototype with normalization method.
@@ -94,6 +159,31 @@ Extends String prototype with normalization method.
 
 ```js
 'Zażółć gęślą jaźń'.normalizePolish(); // 'Zazolc gesla jazn'
+```
+
+### String.prototype.hasPolishChars()
+
+Extends String prototype with Polish character detection.
+
+**Returns:**
+
+- (boolean): True if the string contains Polish diacritics
+
+```js
+'Kraków'.hasPolishChars(); // true
+'Hello'.hasPolishChars(); // false
+```
+
+### String.prototype.getPolishChars()
+
+Extends String prototype with Polish character extraction.
+
+**Returns:**
+
+- (string[]): Array of unique Polish characters in the string
+
+```js
+'Zażółć'.getPolishChars(); // ['ż', 'ó', 'ł', 'ć']
 ```
 
 ## Character Mappings

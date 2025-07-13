@@ -212,13 +212,30 @@
     </div>
 
     <script type="module">
-      import { normalizePolish } from './polish-normalizer.js';
+      import {
+        normalizePolish,
+        hasPolishChars,
+        getPolishChars,
+      } from './polish-normalizer.js';
 
-      // Make normalize function globally available
+      // Make functions globally available
       window.normalize = function () {
         const input = document.getElementById('input').value;
-        const output = normalizePolish(input);
-        document.getElementById('output').textContent = output || '(empty)';
+        const normalized = normalizePolish(input);
+        const hasPolish = hasPolishChars(input);
+        const polishChars = getPolishChars(input);
+
+        let output = normalized || '(empty)';
+        
+        if (hasPolish) {
+          output += `\n\n📊 Analysis:`;
+          output += `\n• Contains Polish characters: ${hasPolish}`;
+          output += `\n• Polish characters found: [${polishChars.join(', ')}]`;
+        } else {
+          output += `\n\n📊 Analysis: No Polish characters detected`;
+        }
+
+        document.getElementById('output').textContent = output;
       };
 
       // Auto-normalize on input
