@@ -230,3 +230,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 MIT © Hayk Jomardyan
+
+## Maintainer checks
+
+Use `npm ci`, `npm run lint`, `npm test` and `npm pack --dry-run` before packaging. `make` exposes install, dev, test, lint, build, clean, package and security targets. The runtime has no external dependencies; `npm audit` also reports development-tool advisories. CI tests supported Node 22 and 24.

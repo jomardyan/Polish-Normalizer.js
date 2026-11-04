@@ -91,7 +91,6 @@ if (
   String.prototype &&
   !String.prototype.normalizePolish
 ) {
-  /* eslint-disable no-extend-native */
   String.prototype.normalizePolish = function () {
     return normalizePolish(this.toString());
   };
@@ -103,5 +102,4 @@ if (
   String.prototype.getPolishChars = function () {
     return getPolishChars(this.toString());
   };
-  /* eslint-enable no-extend-native */
 }
