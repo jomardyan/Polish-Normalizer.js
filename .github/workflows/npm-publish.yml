@@ -22,6 +22,12 @@ jobs:
         node-version: [22, 24]
     steps:
       - uses: actions/checkout@v4
+      - name: Verify Makefile help and local target wiring
+        if: runner.os == 'Linux'
+        working-directory: ${{ github.workspace }}
+        run: |
+          make --no-print-directory
+          make --no-print-directory -n test build package clean
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
