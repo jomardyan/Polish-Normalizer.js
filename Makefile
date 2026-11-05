@@ -11,6 +11,8 @@ PYTHON ?= python3
 NPM ?= npm
 COMPOSER ?= composer
 endif
+# COMPOSER names an executable here; Composer reserves its environment value for a manifest.
+unexport COMPOSER
 NODE ?= node
 PHP ?= php
 DOTNET ?= dotnet
